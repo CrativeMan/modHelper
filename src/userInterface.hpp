@@ -116,7 +116,7 @@ private:
     // cont = w_MainWindow_MenuBar();
 
     // Column 1
-    ImGui::Columns(2);
+    ImGui::Columns(2, NULL, false);
     if (ImGui::Button("Create new mod project", menu_button_size)) {
       ImGui::OpenPopup("New Project");
     }
