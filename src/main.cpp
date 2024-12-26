@@ -22,6 +22,7 @@ void errorCallback(int error, const char *description) {
 }
 
 int main() {
+  Logger::testLogger();
   if (glfwInit()) {
     Logger::info("MH", "Initialized GLFW");
   } else {
@@ -33,6 +34,7 @@ int main() {
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+  glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
   window.width = 800;
   window.height = 600;
