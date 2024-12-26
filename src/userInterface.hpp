@@ -62,7 +62,7 @@ public:
 private:
   ImVec2 menu_button_size = ImVec2(360, 40);
 
-  void w_MainWindow_PopUps() {
+  void mainWindow_PopUps() {
     ImGuiIO &io = ImGui::GetIO();
     ImVec2 center = ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.5f);
     ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
@@ -78,7 +78,7 @@ private:
       ImGui::InputText("Author", author, IM_ARRAYSIZE(author));
 
       if (ImGui::Button("Create")) {
-        if (!modInfoValid(title, author)) {
+        if (!isModInfoValid(title, author)) {
           Logger::warn("MH", "Invalid mod info");
         } else {
           Logger::info("MH", "Creating new mod project: %s - %s", title,
@@ -112,7 +112,7 @@ private:
 
     ImGui::Begin("Full Screen Window", NULL, flags);
 
-    w_MainWindow_PopUps();
+    mainWindow_PopUps();
     // cont = w_MainWindow_MenuBar();
 
     // Column 1
@@ -135,7 +135,7 @@ private:
     return cont;
   };
 
-  bool modInfoValid(std::string title, std::string author) {
+  bool isModInfoValid(std::string title, std::string author) {
     if (title.empty() || author.empty()) {
       return false;
     }
