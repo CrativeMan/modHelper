@@ -18,9 +18,16 @@ typedef struct {
   std::string author;
 } Mod;
 
+typedef enum {
+  W_MAIN,
+  W_MOD,
+  W_EXIT,
+} W_STATE;
+
 class UserInterface {
 public:
   std::vector<Mod> mod_list;
+  W_STATE state = W_MAIN;
 
   UserInterface(GLFWwindow *window) {
     IMGUI_CHECKVERSION();
@@ -52,7 +59,19 @@ public:
 
     ImGuiIO &io = ImGui::GetIO();
     ImGui::NewFrame();
-    bool cont = w_MainWindow(io);
+
+    bool cont = true;
+    switch (state) {
+    case W_MAIN:
+      cont = w_MainWindow(io);
+      break;
+    case W_MOD:
+      break;
+    case W_EXIT:
+      return false;
+    default:
+      break;
+    }
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
